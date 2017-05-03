@@ -8,7 +8,8 @@ object main {
     val c = new CallableThread()
     val cellOne = c.cell
     val cellTwo = c.cell
-    
+    val mt = matriculaIO
+    println(mt.getProcessorCount)
     // Cell One Jobs will occur first.///////////////////////////////
     cellOne.file (
               name = "test.txt", 

@@ -21,7 +21,7 @@ import scala.sys.process._
 import java.util.HashMap
 import org.json.simple._
 
-object MatriculaIO {
+object matriculaIO {
   
   def getAvailableMemory : JSONObject = {
     val availMem = java.lang.Runtime.getRuntime.totalMemory().toDouble
