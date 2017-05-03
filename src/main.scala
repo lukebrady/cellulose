@@ -9,7 +9,7 @@ object main {
     val cellOne = c.cell
     val cellTwo = c.cell
     val mt = matriculaIO
-    println(mt.)
+
     // Cell One Jobs will occur first.///////////////////////////////
     cellOne.file (
               name = "test.txt", 
