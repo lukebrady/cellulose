@@ -1,11 +1,11 @@
 
 
 import com.lukebrains.cellulose.matricula._
-import com.lukebrains.cellulose.Cellulose
+import com.lukebrains.cellulose.CallableThread
 
 object main {
   def main(args : Array[String]) : Unit = {
-    val c = new Cellulose()
+    val c = new CallableThread()
     val cellOne = c.cell
     val cellTwo = c.cell
     
