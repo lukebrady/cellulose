@@ -28,7 +28,7 @@ object cellFile {
               writer.write(content)
               writer.close()
             }
-            catch {
+            catch { 
               case e : IOException => println(e.printStackTrace()) 
             }
           } 
