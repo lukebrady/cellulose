@@ -64,7 +64,7 @@ class CallableThread {
       val dirCheckThread = new Thread(new Runnable {
         def run() {
           while(true) {
-            dirThread.directoryCreationThread(path, ensure)
+            dirThread.directoryCreationThread(path)
             Thread.sleep(2000)
           }
         }
