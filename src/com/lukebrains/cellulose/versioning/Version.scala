@@ -15,13 +15,14 @@ package com.lukebrains.cellulose.versioning
 
 import java.io.{ObjectOutputStream, ObjectInputStream, FileOutputStream, FileInputStream}
 import java.nio.file.{Files, Paths}
-import scala.collection.immutable.HashMap
+// import scala.collection.immutable.HashMap
+import java.util.HashMap
 import java.io.IOException
 
 class Version {
-  var cache : HashMap[Int, Object] = HashMap()
-  var versionLimit : Int = 1
-  var versionID : Int = 1
+  private var cache = new HashMap[Int, Object]
+  private var versionLimit : Int = 0
+  private var versionID : Int = 0
   
   def initializeVersion(versionLimit : Int) {
     this.versionLimit = versionLimit
@@ -29,12 +30,15 @@ class Version {
   }
   
   def cacheConfiguration(configuration : Object, outputDirectory : String) {
-    if(versionID <= versionLimit) 
-      cache.updated(versionID, configuration)
+    if(cache.size <= versionLimit) {
+      cache.put(versionID, configuration)
+      versionID += 1
+    }
     else {
       val cacheFile = new FileOutputStream(outputDirectory + "/" + versionID)
       val cacheOutputStream = new ObjectOutputStream(cacheFile)
       try {
+        versionID += 1
         cacheOutputStream.writeObject(configuration)
         cacheOutputStream.flush()
       } catch {
@@ -47,7 +51,7 @@ class Version {
   
   def restoreConfiguration(version : Int, inputDirectory : String) : Object = {
     var configuration : Object = null
-    if(cache.contains(version)) {
+    if(cache.containsKey(version)) {
       configuration = cache.get(version)
     }
     else {
