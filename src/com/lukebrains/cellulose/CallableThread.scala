@@ -30,7 +30,7 @@ class CallableThread {
         def run() {
           while(true) {
             fileThread.fileCreationThread(path, content)
-            // Thread.sleep(2000)
+            Thread.sleep(2000)
           }
         }
       }).start()
