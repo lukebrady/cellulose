@@ -20,15 +20,14 @@ object cellDirectory {
     val dirCreator  = new Thread(new Runnable {
       def run() {
         val dir = new File(path)
-      
+        
         if(ensure == "Present" || ensure == "present") {
           try {
             if(dir.exists())
               Thread.`yield`()
             else
               dir.mkdir()
-          }
-          catch {
+          } catch {
             case e : IOException => e.printStackTrace()
           }
         }
@@ -38,8 +37,7 @@ object cellDirectory {
             try {
               dir.delete()
               if(dir.exists() == false) {}
-            }
-            catch {
+            } catch {
               case e : IOException => e.printStackTrace()
             }
           }

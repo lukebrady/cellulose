@@ -22,7 +22,7 @@ object main {
     cellOne.file (
               name = "test2.txt", 
               path = "C:\\Users\\lbrad23105\\Desktop\\example\\", 
-              content = "Hello World", 
+              content = "Hello Samuel", 
               ensure = "Present")
     //////////////////////////////////////////////////////////////////
     
