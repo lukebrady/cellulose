@@ -20,18 +20,14 @@ object cellPackage {
    * @param provider Supply the package provider that will install the requested software.
    */
   def installPackage(name : String, provider : String) {
-    val pkgThread = new Thread(new Runnable {
-      def run(){
-        provider match {
-          case "apt" => val install = "apt-get install -y " + name
-                        install !
-          case "yum" => val install = "yum install -y " + name
-                        install !
-          case _ => val err = name + " is not a proper provider."
-                    println(err)
-        }
-      }  
-    }).run()
+    provider match {
+      case "apt" => val install = "apt-get install -y " + name
+                    install !
+      case "yum" => val install = "yum install -y " + name
+                    install !
+      case _ => val err = name + " is not a proper provider."
+                println(err)
+    }  
   }
   /*
    * @param name Give the name of the package that will be uninstalled
@@ -39,17 +35,13 @@ object cellPackage {
    * @param provider Supply the provider that will be uninstalling the package.
    */
   def uninstallPackage(name : String, provider : String) {
-    val pkgThread = new Thread(new Runnable {
-      def run() {
-        provider match {
-          case "apt" => val uninstall = "apt-get remove -y " + name
-                        uninstall !
-          case "yum" => val install = "yum remove -y " + name
-                        install !
-          case _ => val err = name + " is not a proper provider."
-                    println(err)
-        }    
-      }
-    }).run()
+    provider match {
+      case "apt" => val uninstall = "apt-get remove -y " + name
+                    uninstall !
+      case "yum" => val install = "yum remove -y " + name
+                    install !
+      case _ => val err = name + " is not a proper provider."
+                println(err)
+    }    
   }
 }

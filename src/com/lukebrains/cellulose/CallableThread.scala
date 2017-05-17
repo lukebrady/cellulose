@@ -24,12 +24,12 @@ import com.lukebrains.cellulose.primitive._
 class CallableThread {
   object cell {
     
-    def file(name: String, path: String, content: String, ensure: String) = {
+    def file(path: String, content: String) = {
       val fileThread = cellFile
       val fileCheckThread = new Thread(new Runnable {
         def run() {
           while(true) {
-            fileThread.fileCreationThread(name, path, content, ensure)
+            fileThread.fileCreationThread(path, content)
             Thread.sleep(2000)
           }
         }

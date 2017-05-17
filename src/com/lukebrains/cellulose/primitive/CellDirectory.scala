@@ -16,33 +16,22 @@ package com.lukebrains.cellulose.primitive
 import java.io._
 
 object cellDirectory {
-  def directoryCreationThread(path: String, ensure: String = "present") = {
-    val dirCreator  = new Thread(new Runnable {
-      def run() {
-        val dir = new File(path)
-        
-        if(ensure == "Present" || ensure == "present") {
-          try {
-            if(dir.exists())
-              Thread.`yield`()
-            else
-              dir.mkdir()
-          } catch {
-            case e : IOException => e.printStackTrace()
-          }
-        }
-      
-        if(ensure == "Absent" || ensure == "absent") {
-          if(dir.exists()) {
-            try {
-              dir.delete()
-              if(dir.exists() == false) {}
-            } catch {
-              case e : IOException => e.printStackTrace()
-            }
-          }
-        }
-      } 
-    }).start()
+  def directoryCreationThread(path: String) = {
+    val dir = new File(path)
+    try {
+      if(dir.exists())
+        Thread.`yield`()
+      else
+        dir.mkdir()
+    } catch {
+      case e : IOException => e.printStackTrace()
+    }
+    if(! dir.exists()) {
+      try {
+        dir.delete()
+      } catch {
+        case e : IOException => e.printStackTrace()
+      }
+    }
   }
 }

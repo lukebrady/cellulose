@@ -13,7 +13,6 @@
 
 package com.lukebrains.cellulose.matricula
 
-
 import scala.io._
 import scala.collection.JavaConversions._
 import java.io._
