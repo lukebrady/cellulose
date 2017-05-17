@@ -14,6 +14,7 @@
 package com.lukebrains.cellulose.versioning
 
 import java.io.{ObjectOutputStream, ObjectInputStream, FileOutputStream, FileInputStream}
+import java.nio.file.{Files, Paths}
 import scala.collection.immutable.HashMap
 import java.io.IOException
 
@@ -50,16 +51,21 @@ class Version {
       configuration = cache.get(version)
     }
     else {
-      val cacheFile = new FileInputStream(inputDirectory + "/" + version)
-      val cacheInputStream = new ObjectInputStream(cacheFile)
-      try {
-        configuration = cacheInputStream.readObject()
-      } catch {
-        case i : IOException => i.printStackTrace()
-      } finally {
-        cacheInputStream.close()
+      if(Files.exists(Paths.get(inputDirectory + "/" + version))) {
+        val cacheFile = new FileInputStream(inputDirectory + "/" + version)
+        val cacheInputStream = new ObjectInputStream(cacheFile)
+        try {
+          configuration = cacheInputStream.readObject()
+        } catch {
+          case i : IOException => i.printStackTrace()
+        } finally {
+          cacheInputStream.close()
+        }
       }
+      else
+        println("Version " + version + " does not exist.")
     }
     return configuration
   }
+  // Will add remove version capability.
 }
