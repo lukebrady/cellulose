@@ -1,2 +1,2 @@
-# cellulose-scala
+# cellulose
 The Cellulose autonomic computing engine.
